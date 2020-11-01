@@ -19,11 +19,12 @@ public class Segundo implements Runnable{
 			//cont é incrementado
 			cont++;
 			//se  cont chegar a 59 ele retorna ao valor 0 por que 59 segundos é equivalente a 1 minuto;
-			if(cont==59) {
+			if(cont==60) {
 				cont=0;
 			}
 			
 			try {
+				
 				Thread.sleep(1000); // cada vez que ele incrementa a interaçao dorme por 1000 milessimos que equivalem a um segundo;
 			} catch (Exception e)
 			{

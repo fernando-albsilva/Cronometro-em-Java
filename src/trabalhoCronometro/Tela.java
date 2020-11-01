@@ -20,10 +20,11 @@ public class Tela extends JFrame {
 	Segundo segundo;
 	Minuto minuto;
 	Hora hora;
+	MudaCorFundo mudaCorFundo;
 	
-	Thread tHora,tMinuto,tSegundo,tMilessimo;
+	Thread tHora,tMinuto,tSegundo,tMilessimo,tMudaCorFundo;
 	
-	private JPanel Painel;
+	public static JPanel Painel;
 	public static JTextField txtHora;
 	public static JTextField txtMinuto;
 	public static JTextField txtSegundo;
@@ -51,6 +52,11 @@ public class Tela extends JFrame {
 		
 		milessimo = new Milessimo();
 		tMilessimo = new Thread(milessimo);
+		
+		mudaCorFundo = new MudaCorFundo();
+		tMudaCorFundo = new Thread(mudaCorFundo);
+		
+		
 		
 		//metodo que encerra o JFrame quando clicarmos em fechar
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,6 +141,8 @@ public class Tela extends JFrame {
 					tMinuto.start();
 				if(!tHora.isAlive())
 					tHora.start();
+				if(!tMudaCorFundo.isAlive())
+					tMudaCorFundo.start();
 				
 				
 			}
@@ -160,6 +168,9 @@ public class Tela extends JFrame {
 					tMinuto.suspend();
 				if(tHora.isAlive())
 					tHora.suspend();
+				if(tMudaCorFundo.isAlive())
+					tMudaCorFundo.suspend();
+
 				
 			}
 		});
@@ -186,6 +197,9 @@ public class Tela extends JFrame {
 					tMinuto.resume();
 				if(tHora.isAlive())
 					tHora.resume();
+				if(tMudaCorFundo.isAlive())
+					tMudaCorFundo.resume();
+
 				
 
 			}
@@ -211,16 +225,19 @@ public class Tela extends JFrame {
 						tSegundo.stop();
 						tMinuto.stop();
 						tHora.stop();
+						tMudaCorFundo.stop();
 						
 						tHora = new Thread(hora);
 						tMinuto= new Thread(minuto);
 						tSegundo = new Thread(segundo);
 						tMilessimo = new Thread(milessimo);
+						tMudaCorFundo = new Thread(mudaCorFundo);
 						
 						Tela.txtMiliSegundo.setText("0");
 						Tela.txtSegundo.setText("0");
 						Tela.txtMinuto.setText("0");
 						Tela.txtHora.setText("0");
+						Tela.Painel.setBackground(Color.WHITE);
 			
 				
 				

@@ -18,7 +18,7 @@ public class Minuto implements Runnable{
 			//cont é incrementado
 			cont++;
 			//se  cont chegar a 59 ele retorna ao valor 0 por que 60 minutos equivalem a uma hora ai começa a recontagem;
-			if(cont==59) {
+			if(cont==60) {
 				cont=0;
 			}
 			
